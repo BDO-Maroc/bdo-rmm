@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\akassioui\\\\OneDrive - Répertoire par défaut\\\\Bureau\\\\BDO\\\\DEV\\\\Python\\\\RMM\\\\tacticalrmm-web-develop\\\\src\" -Directory | ForEach-Object { $_.Name })"
+    ]
+  }
+}
