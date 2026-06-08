@@ -269,15 +269,26 @@ if [ "$skip_frontend" = false ]; then
     npm run build
 
     if [ $? -eq 0 ]; then
-      # Deployer le build
-      sudo rm -rf ${FRONTEND_DIR}/dist
-      sudo cp -r dist/spa ${FRONTEND_DIR}/dist
+      # Deployer le build - detecter le dossier de sortie
+      BUILD_OUTPUT=""
+      if [ -d "dist/spa" ]; then
+        BUILD_OUTPUT="dist/spa"
+      elif [ -d "dist" ]; then
+        BUILD_OUTPUT="dist"
+      fi
 
-      # Configurer l'URL de l'API
-      echo "window._env_ = {PROD_URL: \"https://${API}\"}" | sudo tee ${FRONTEND_DIR}/dist/env-config.js >/dev/null
+      if [ -z "$BUILD_OUTPUT" ]; then
+        printf >&2 "${RED}[BDO] ERREUR: Dossier de build introuvable !${NC}\n"
+      else
+        sudo rm -rf ${FRONTEND_DIR}/dist
+        sudo cp -r ${BUILD_OUTPUT} ${FRONTEND_DIR}/dist
 
-      sudo chown www-data:www-data -R ${FRONTEND_DIR}/dist
-      printf >&2 "${GREEN}[BDO] Frontend mis a jour avec succes !${NC}\n"
+        # Configurer l'URL de l'API
+        echo "window._env_ = {PROD_URL: \"https://${API}\"}" | sudo tee ${FRONTEND_DIR}/dist/env-config.js >/dev/null
+
+        sudo chown www-data:www-data -R ${FRONTEND_DIR}/dist
+        printf >&2 "${GREEN}[BDO] Frontend mis a jour avec succes !${NC}\n"
+      fi
     else
       printf >&2 "${RED}[BDO] ERREUR: Le build du frontend a echoue !${NC}\n"
     fi
