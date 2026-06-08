@@ -185,7 +185,7 @@ git reset --hard origin/${BDO_BRANCH}
 
 # Restaurer les fichiers proteges
 for pfile in "${PROTECTED_FILES[@]}"; do
-  local tmpfile="/tmp/bdo_protected_$(basename ${pfile})"
+  tmpfile="/tmp/bdo_protected_$(basename ${pfile})"
   if [ -f "$tmpfile" ]; then
     cp "$tmpfile" "${API_DIR}/${pfile}"
     rm -f "$tmpfile"
