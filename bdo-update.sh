@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_VERSION="1"
-SCRIPT_URL='https://raw.githubusercontent.com/VOTRE_GITHUB_USER/bdo-rmm/main/bdo-update.sh'
+SCRIPT_URL='https://raw.githubusercontent.com/BDO-Maroc/bdo-rmm/main/bdo-update.sh'
 
 # ============================================================
 # BDO RMM - Script de mise a jour personnalise
@@ -23,8 +23,8 @@ THIS_SCRIPT=$(readlink -f "$0")
 
 # ============ CONFIGURATION ============
 # Modifiez ces valeurs avec vos repos GitHub
-BDO_BACKEND_REPO="https://github.com/VOTRE_GITHUB_USER/bdo-rmm.git"
-BDO_FRONTEND_REPO="https://github.com/VOTRE_GITHUB_USER/bdo-rmm-web.git"
+BDO_BACKEND_REPO="https://github.com/BDO-Maroc/bdo-rmm.git"
+BDO_FRONTEND_REPO="https://github.com/BDO-Maroc/bdo-rmm-web.git"
 BDO_BRANCH="main"
 
 # Chemins sur le serveur (standard Tactical RMM)
